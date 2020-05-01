@@ -452,7 +452,7 @@ export const fromMat3 = (out: Quat, m: Readonly<Mat3>): Quat => {
  * @returns {quat} out
  * @function
  */
-export const fromEuler = (out: Quat, x: number, y: number, z: number): Quat => {
+export const fromEuler = (out: Quat, [x, y, z]: Vec3): Quat => {
   let halfToRad = (0.5 * Math.PI) / 180.0;
   x *= halfToRad;
   y *= halfToRad;
