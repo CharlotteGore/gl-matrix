@@ -1,8 +1,7 @@
-import * as mat3 from "./mat3"
 import * as mat4 from "./mat4"
 import * as quat from "./quat"
 import * as vec3 from "./vec3"
-import { Quat, Vec3, Mat3, Mat4 } from "./types";
+import { Quat, Vec3, Mat4 } from "./types";
 import { EPSILON } from "./common";
 
 expect.extend({
@@ -973,7 +972,7 @@ expect.extend({
             matA = mat4.fromValues(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
             matB = mat4.fromValues(17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32);
         });
-        it("should have an alias called 'sub'", function() { expect(mat3.sub).toEqual(mat3.subtract); });
+        it("should have an alias called 'sub'", function() { expect(mat4.sub).toEqual(mat4.subtract); });
 
         describe("with a separate output matrix", function() {
             beforeEach(function() { result = mat4.subtract(out, matA, matB); });

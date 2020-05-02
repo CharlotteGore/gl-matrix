@@ -454,7 +454,7 @@ export const bezier = (out: Vec3, a: Readonly<Vec3>, b: Readonly<Vec3>, c: Reado
  * @param {Number} [scale] Length of the resulting vector. If ommitted, a unit vector will be returned
  * @returns {vec3} out
  */
-export const random = (out: Vec3, scale: number): Vec3 => {
+export const random = (out: Vec3, scale?: number): Vec3 => {
   scale = scale || 1.0;
 
   let r = RANDOM() * 2.0 * Math.PI;
@@ -757,36 +757,3 @@ export const len = length;
 export const sqrLen = squaredLength;
 
 const tempVec3 = create();
-/**
- * Perform some operation over an array of vec3s.
- *
- * @param {Float32Array} a the array of vectors to iterate over
- * @param {Number} stride Number of elements between the start of each vec3. If 0 assumes tightly packed
- * @param {Number} offset Number of elements to skip at the beginning of the array
- * @param {Number} count Number of vec3s to iterate over. If 0 iterates over entire array
- * @param {Function} fn Function to call for each vector in the array
- * @param {Object} [arg] additional argument to pass to fn
- * @returns {Array} a
- * @function
- */
-
-export const forEach = <T>(a: Float32Array, stride: number = 3, offset: number = 0, count: number = 0, fn: (a: Vec3, b: Vec3, arg: T) => void, arg: T): void => {
-
-  let l: number;
-
-  if (count) {
-    l = Math.min(count * stride + offset, a.length);
-  } else {
-    l = a.length;
-  }
-
-  for (let i = offset; i < l; i += stride) {
-    tempVec3[0] = a[i];
-    tempVec3[1] = a[i + 1];
-    tempVec3[2] = a[i + 2];
-    fn(tempVec3, tempVec3, arg);
-    a[i] = tempVec3[0];
-    a[i + 1] = tempVec3[1];
-    a[i + 2] = tempVec3[2];
-  }
-};
