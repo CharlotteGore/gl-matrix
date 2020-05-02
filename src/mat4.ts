@@ -1,5 +1,5 @@
-import { EPSILON } from "./common.js";
-import { Mat4, Vec3, Quat, Quat2 } from "./types.js";
+import { EPSILON } from "./common";
+import { Mat4, Vec3, Quat, Quat2 } from "./types";
 
 /**
  * 4x4 Matrix<br>Format: column-major, when typed out it looks like row-major<br>The matrices are being post multiplied.
@@ -1447,7 +1447,7 @@ export const frustum = (out: Mat4, left: number, right: number, bottom: number, 
  * @param {number} far Far bound of the frustum, can be null or Infinity
  * @returns {mat4} out
  */
-export const perspective = (out: Mat4, fovy: number, aspect: number, near: number, far: number): Mat4 =>  {
+export const perspective = (out: Mat4, fovy: number, aspect: number, near: number, far?: number): Mat4 =>  {
   let f = 1.0 / Math.tan(fovy / 2),
     nf;
   out[0] = f / aspect;

@@ -1,5 +1,5 @@
-import { EPSILON } from "./common.js";
-import { Mat2, Vec2 } from "./types.js";
+import { EPSILON } from "./common";
+import { Mat2, Vec2 } from "./types";
 
 /**
  * 2x2 Matrix

@@ -1,4 +1,4 @@
-import { RANDOM, EPSILON } from "./common.js";
+import { RANDOM, EPSILON } from "./common";
 import { Vec4, Mat4, Quat } from "./types";
 
 /**

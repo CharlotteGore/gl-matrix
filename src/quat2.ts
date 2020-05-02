@@ -1,8 +1,8 @@
-import { EPSILON } from "./common.js";
-import * as quat from "./quat.js";
-import * as mat4 from "./mat4.js";
-import * as vec3 from "./vec3.js";
-import { Vec3, Quat2, Quat, Mat4 } from "./types.js";
+import { EPSILON } from "./common";
+import * as quat from "./quat";
+import * as mat4 from "./mat4";
+import * as vec3 from "./vec3";
+import { Vec3, Quat2, Quat, Mat4 } from "./types";
 
 /**
  * Dual Quaternion<br>

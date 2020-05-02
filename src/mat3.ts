@@ -1,5 +1,5 @@
-import { EPSILON } from "./common.js";
-import { Mat3, Vec2, Quat } from "./types.js";
+import { EPSILON } from "./common";
+import { Mat3, Mat4, Vec2, Quat } from "./types";
 
 /**
  * 3x3 Matrix
@@ -26,7 +26,7 @@ export const create = (): Mat3 => {
  * @param {ReadonlyMat4} a   the source 4x4 matrix
  * @returns {mat3} out
  */
-export const fromMat4 = (out: Mat3, a: Readonly<Mat3>): Mat3 => {
+export const fromMat4 = (out: Mat3, a: Readonly<Mat4>): Mat3 => {
   out[0] = a[0];
   out[1] = a[1];
   out[2] = a[2];

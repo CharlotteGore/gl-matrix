@@ -1,4 +1,4 @@
-import { EPSILON, RANDOM } from "./common.js";
+import { EPSILON, RANDOM } from "./common";
 import * as mat3 from './mat3';
 import * as vec3 from './vec3';
 import * as vec4 from './vec4';
@@ -480,7 +480,7 @@ export const fromEuler = (out: Quat, [x, y, z]: Vec3): Quat => {
  * @returns {String} string representation of the vector
  */
 export const str = (a: Readonly<Quat>): string => {
-  return `quat(${a[0]},${a[1]},${a[2]},${a[3]})`;
+  return `quat(${a[0]}, ${a[1]}, ${a[2]}, ${a[3]})`;
 }
 /**
  * Creates a new quat initialized with values from an existing quaternion
@@ -695,7 +695,7 @@ export const sqlerp = (out: Quat, a: Readonly<Quat>, b: Readonly<Quat>, c: Reado
   return out;
 };
 
-const setAxisTemp = mat3.create();
+// const setAxisTemp = mat3.create();
 /**
  * Sets the specified quaternion with values corresponding to the given
  * axes. Each axis is a vec3 and is expected to be unit length and
@@ -707,18 +707,32 @@ const setAxisTemp = mat3.create();
  * @returns {quat} out
  */
 
-export const setAxes = (out: Quat, view: Readonly<Vec3>, right: Readonly<Vec3>, up: Readonly<Vec3>): Quat => {
-  setAxisTemp[0] = right[0];
-  setAxisTemp[3] = right[1];
-  setAxisTemp[6] = right[2];
+/**
+ * Sets the specified quaternion with values corresponding to the given
+ * axes. Each axis is a vec3 and is expected to be unit length and
+ * perpendicular to all other specified axes.
+ *
+ * @param {ReadonlyVec3} view  the vector representing the viewing direction
+ * @param {ReadonlyVec3} right the vector representing the local "right" direction
+ * @param {ReadonlyVec3} up    the vector representing the local "up" direction
+ * @returns {quat} out
+ */
+export const setAxes = (function() {
+  let matr = mat3.create();
 
-  setAxisTemp[1] = up[0];
-  setAxisTemp[4] = up[1];
-  setAxisTemp[7] = up[2];
+  return function(out: Quat, view: Readonly<Vec3>, right: Readonly<Vec3>, up: Readonly<Vec3>) {
+    matr[0] = right[0];
+    matr[3] = right[1];
+    matr[6] = right[2];
 
-  setAxisTemp[2] = -view[0];
-  setAxisTemp[5] = -view[1];
-  setAxisTemp[8] = -view[2];
+    matr[1] = up[0];
+    matr[4] = up[1];
+    matr[7] = up[2];
 
-  return normalize(out, fromMat3(out, setAxisTemp));
-};
+    matr[2] = -view[0];
+    matr[5] = -view[1];
+    matr[8] = -view[2];
+
+    return normalize(out, fromMat3(out, matr));
+  };
+})();
