@@ -1447,7 +1447,7 @@ export const frustum = (out: Mat4, left: number, right: number, bottom: number, 
  * @param {number} far Far bound of the frustum, can be null or Infinity
  * @returns {mat4} out
  */
-export const perspective = (out: Mat4, fovy: number, aspect: number, near: number, far?: number): Mat4 =>  {
+export const perspective = (out: Mat4, fovy: number, aspect: number, near: number, far: number): Mat4 =>  {
   let f = 1.0 / Math.tan(fovy / 2),
     nf;
   out[0] = f / aspect;
